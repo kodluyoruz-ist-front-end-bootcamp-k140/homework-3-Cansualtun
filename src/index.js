@@ -1,13 +1,16 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import "./index.css";
+import "./App.css";
 import App from "./ToDo";
-import Navbar from "./Components/Navbar";
+import Navbar from "./Navbar";
+import { ThemeProvider } from "./contexts/theme";
 
 ReactDOM.render(
   <React.StrictMode>
-    <Navbar />
-    <App />
+    <ThemeProvider>
+      <Navbar />
+      <App />
+    </ThemeProvider>
   </React.StrictMode>,
   document.getElementById("root")
 );

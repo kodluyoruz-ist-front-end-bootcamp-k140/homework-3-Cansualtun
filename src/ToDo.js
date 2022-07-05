@@ -1,12 +1,14 @@
 import React, { useState } from "react";
 import { useFetch } from "./Hooks";
+import { ThemeContext } from "./contexts/theme";
+import { useContext } from "react";
 
 function TableRow(props) {
   return (
     <tr>
       <th scope="row">{props.id}</th>
       <td>{props.title}</td>
-      <td>{props.completed ? "Tamamlandı" : "Yapılacak"}</td>
+      <td>{props.completed ? "Completed" : "To Do"}</td>
     </tr>
   );
 }
@@ -33,6 +35,21 @@ export default function () {
     );
   };
 
+  const Button = () => {
+    const [{ theme, isDark }, toggleTheme] = useContext(ThemeContext);
+    return (
+      <div
+        className="Button"
+        style={{ backgroundColor: theme.backgroundColor, color: theme.color }}
+      >
+        <div className="text">It's a {isDark ? "Dark" : "Light"} theme</div>
+        <button type="button" onClick={toggleTheme}>
+          Toggle theme
+        </button>
+      </div>
+    );
+  };
+
   const renderTable = () => {
     return (
       <>
@@ -40,8 +57,8 @@ export default function () {
           <thead>
             <tr>
               <th scope="col">#</th>
-              <th scope="col">Başlık</th>
-              <th scope="col">Durum</th>
+              <th scope="col">Topic</th>
+              <th scope="col">Status</th>
             </tr>
           </thead>
           <tbody>{renderBody()}</tbody>
@@ -57,7 +74,7 @@ export default function () {
           <thead>
             <tr>
               <th scope="col">#</th>
-              <th scope="col">Başlık</th>
+              <th scope="col">Topic</th>
             </tr>
           </thead>
           <tbody>{renderPostsBody()}</tbody>
@@ -96,7 +113,7 @@ export default function () {
         <button
           onClick={() => setActiveTab("todos")}
           className={
-            activeTab === "todos" ? "btn btn-primary" : "btn btn-default"
+            activeTab === "todos" ? "btn btn-warning" : "btn btn-default"
           }
         >
           Todos
@@ -104,7 +121,7 @@ export default function () {
         <button
           onClick={() => setActiveTab("posts")}
           className={
-            activeTab === "posts" ? "btn btn-primary" : "btn btn-default"
+            activeTab === "posts" ? "btn btn-warning" : "btn btn-default"
           }
         >
           Posts
