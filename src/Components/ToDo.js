@@ -1,24 +1,21 @@
-import React, { useState } from "react";
+import React from "react";
 import { useFetch } from "../Hooks";
 
-function TableRow(props) {
-  return (
-    <tr>
-      <th scope="row">{props.id}</th>
-      <td>{props.title}</td>
-      <td>{props.completed ? "Completed" : "To Do"}</td>s
-    </tr>
-  );
-}
-
 const TODOS = "https://jsonplaceholder.typicode.com/todos";
-const POSTS = "https://jsonplaceholder.typicode.com/posts";
 
-// eslint-disable-next-line import/no-anonymous-default-export
-export default function () {
-  const [activeTab, setActiveTab] = useState("todos");
+export default function ToDo() {
+  //const [activeTab, setActiveTab] = useState("todos");
   const todos = useFetch(TODOS);
-  const posts = useFetch(POSTS);
+
+  const TableRow = (props) => {
+    return (
+      <tr>
+        <th scope="row">{props.id}</th>
+        <td>{props.title}</td>
+        <td>{props.completed ? "Completed" : "To Do"}</td>
+      </tr>
+    );
+  };
 
   const renderBody = () => {
     return (
@@ -50,67 +47,9 @@ export default function () {
     );
   };
 
-  const renderPosts = () => {
-    return (
-      <>
-        <table className="table">
-          <thead>
-            <tr>
-              <th scope="col">#</th>
-              <th scope="col">Topic</th>
-            </tr>
-          </thead>
-          <tbody>{renderPostsBody()}</tbody>
-        </table>
-      </>
-    );
-  };
-  const renderPostsBody = () => {
-    return (
-      <React.Fragment>
-        {posts.data
-          .slice(0, 20)
-          .sort((a, b) => b.id - a.id)
-          .map((item, index) => {
-            return (
-              <tr key={item.id}>
-                <th scope="row">{item.id}</th>
-                <td>{item.title}</td>
-              </tr>
-            );
-          })}
-      </React.Fragment>
-    );
-  };
-
-  const renderActiveTab = () => {
-    if (activeTab === "todos") {
-      return renderTable();
-    }
-
-    return renderPosts();
-  };
   return (
     <div className="container">
-      <div className="btn-group tabs" role="group">
-        <button
-          onClick={() => setActiveTab("todos")}
-          className={
-            activeTab === "todos" ? "btn btn-warning" : "btn btn-default"
-          }
-        >
-          Todos
-        </button>
-        <button
-          onClick={() => setActiveTab("posts")}
-          className={
-            activeTab === "posts" ? "btn btn-warning" : "btn btn-default"
-          }
-        >
-          Posts
-        </button>
-      </div>
-      {todos.loading ? "Yükleniyor..." : renderActiveTab()}
+      {todos.loading ? "Yükleniyor..." : renderTable()}
     </div>
   );
 }

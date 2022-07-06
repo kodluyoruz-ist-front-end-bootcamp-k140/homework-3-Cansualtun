@@ -17,7 +17,7 @@ export class Posts extends React.Component {
     fetch("https://jsonplaceholder.typicode.com/posts")
       .then((x) => x.json())
       .then((response) => {
-        this.setState({ itmes: response, loading: false });
+        this.setState({ items: response, loading: false });
       })
       .catch((e) => {
         console.log(e);
@@ -27,7 +27,7 @@ export class Posts extends React.Component {
   renderBody = () => {
     return (
       <React.Fragment>
-        {this.state.items.slice(0.5).map((item, index) => {
+        {this.state.items.slice(0, 50).map((item, index) => {
           return (
             <tr key={index}>
               <th scope="row">{item.id}</th>
@@ -62,4 +62,3 @@ export class Posts extends React.Component {
     );
   }
 }
-export default Posts;
