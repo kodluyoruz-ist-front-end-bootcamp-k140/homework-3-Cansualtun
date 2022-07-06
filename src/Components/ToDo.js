@@ -1,14 +1,12 @@
 import React, { useState } from "react";
-import { useFetch } from "./Hooks";
-import { ThemeContext } from "./contexts/theme";
-import { useContext } from "react";
+import { useFetch } from "../Hooks";
 
 function TableRow(props) {
   return (
     <tr>
       <th scope="row">{props.id}</th>
       <td>{props.title}</td>
-      <td>{props.completed ? "Completed" : "To Do"}</td>
+      <td>{props.completed ? "Completed" : "To Do"}</td>s
     </tr>
   );
 }
@@ -32,21 +30,6 @@ export default function () {
             return <TableRow key={item.id} {...item} />;
           })}
       </React.Fragment>
-    );
-  };
-
-  const Button = () => {
-    const [{ theme, isDark }, toggleTheme] = useContext(ThemeContext);
-    return (
-      <div
-        className="Button"
-        style={{ backgroundColor: theme.backgroundColor, color: theme.color }}
-      >
-        <div className="text">It's a {isDark ? "Dark" : "Light"} theme</div>
-        <button type="button" onClick={toggleTheme}>
-          Toggle theme
-        </button>
-      </div>
     );
   };
 
