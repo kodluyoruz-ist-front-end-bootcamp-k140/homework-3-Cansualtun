@@ -110,7 +110,6 @@ export default function () {
           Posts
         </button>
       </div>
-
       {todos.loading ? "Yükleniyor..." : renderActiveTab()}
     </div>
   );
