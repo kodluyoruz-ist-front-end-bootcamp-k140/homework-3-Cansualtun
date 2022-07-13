@@ -1,7 +1,6 @@
 import React, { useState, createContext } from "react";
 import "../App.css";
 import ToDo from "./ToDo";
-import Navbar from "./Navbar";
 import { Posts } from "./Posts";
 import { Button } from "./Button/Button";
 import ReactSwitch from "react-switch";
@@ -18,13 +17,21 @@ function HomePage() {
   return (
     <>
       <div className="App" id={theme}>
+        <span
+          className="navbar-brand h1"
+          style={{ marginLeft: 500, marginTop: 30 }}
+        >
+          K-140 Kodluyoruz Bootcamp Homework 3
+        </span>
         <ThemeContext.Provider value={{ theme, toggleTheme }}>
           <div className="App" id={theme}>
             <div className="switch">
-              <label> {theme === "light" ? "Light Mode" : "Dark Mode"} </label>
+              <label style={{ marginLeft: 1200 }}>
+                {" "}
+                {theme === "light" ? "Light Mode" : "Dark Mode"}{" "}
+              </label>
               <ReactSwitch onChange={toggleTheme} checked={theme === "dark"} />
             </div>
-            <Navbar />
             <div
               className="btn-group tabs"
               role="group"

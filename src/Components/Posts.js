@@ -41,11 +41,13 @@ export class Posts extends React.Component {
   renderTable = () => {
     return (
       <div>
-        <table>
+        <table className="table">
           <thead>
             <tr>
               <th scope="col">ID</th>
-              <th scope="col">Postlar</th>
+              <th scope="col" style={{ marginLeft: 300 }}>
+                Postlar
+              </th>
             </tr>
           </thead>
           <tbody>{this.renderBody()}</tbody>
