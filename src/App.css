@@ -24,3 +24,17 @@ body {
   margin-bottom: 20px;
   font-size: 18px;
 }
+#light {
+  background-color: aliceblue;
+}
+#dark {
+  background-color: purple;
+}
+.switch {
+  display: flex;
+  width: 20px;
+  height: 40px;
+  justify-content: center;
+  align-items: center;
+  margin-left: 100px;
+}
