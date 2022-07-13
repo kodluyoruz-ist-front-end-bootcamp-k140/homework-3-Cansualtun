@@ -21,7 +21,7 @@ function HomePage() {
           className="navbar-brand h1"
           style={{ marginLeft: 500, marginTop: 30 }}
         >
-          K-140 Kodluyoruz Bootcamp Homework 3
+          Kodluyoruz Bootcamp Homework 3
         </span>
         <ThemeContext.Provider value={{ theme, toggleTheme }}>
           <div className="App" id={theme}>
